@@ -1,0 +1,42 @@
+{% extends 'shop/base.html' %}
+
+{% block title %}Аналитика{% endblock %}
+
+{% block content %}
+<h2>Аналитика каталога</h2>
+
+<h3>Общая статистика</h3>
+<ul>
+    <li>Общая стоимость товаров: {{ overall_stats.total_value }}</li>
+    <li>Общее количество товаров: {{ overall_stats.total_products }}</li>
+    <li>Средняя цена: {{ overall_stats.average_price }}</li>
+    <li>Минимальная цена: {{ overall_stats.min_price }}</li>
+    <li>Максимальная цена: {{ overall_stats.max_price }}</li>
+</ul>
+
+<h3>Статистика по категориям</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Категория</th>
+            <th>Количество товаров</th>
+            <th>Общая стоимость</th>
+            <th>Средняя цена</th>
+            <th>Минимальная цена</th>
+            <th>Максимальная цена</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for category in categories_stats %}
+        <tr>
+            <td>{{ category.name }}</td>
+            <td>{{ category.total_products }}</td>
+            <td>{{ category.total_value }}</td>
+            <td>{{ category.avg_price }}</td>
+            <td>{{ category.min_price }}</td>
+            <td>{{ category.max_price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
